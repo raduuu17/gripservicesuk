@@ -157,7 +157,7 @@ const SHOWREEL_URL = '';
       return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
     };
     nav.querySelectorAll('.carousel-btn').forEach((b) => b.addEventListener('click', () => {
-      track.scrollTo({ left: Number(b.dataset.dir) > 0 ? track.scrollWidth : 0, behavior: 'smooth' });
+      track.scrollBy({ left: Number(b.dataset.dir) * step() * 2, behavior: 'smooth' }); // move 2 cards
     }));
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
@@ -255,4 +255,16 @@ const SHOWREEL_URL = '';
     });
   });
   if (btns.filter(function (b) { return !b.hidden; }).length < 3) tabs.hidden = true;
+})();
+
+/* Shoot dates: the end date can't be before the start date */
+(function () {
+  var from = document.getElementById('f-dates-from'), to = document.getElementById('f-dates-to');
+  if (!from || !to) return;
+  var today = new Date().toISOString().slice(0, 10);
+  from.min = today; to.min = today;
+  from.addEventListener('change', function () {
+    to.min = from.value || today;
+    if (to.value && from.value && to.value < from.value) to.value = from.value;
+  });
 })();

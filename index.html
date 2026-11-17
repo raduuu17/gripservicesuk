@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261117za">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261117zb">
 
 <script type="application/ld+json">
 {
@@ -132,8 +132,8 @@
       </div>
       <div class="carousel work-carousel" data-carousel>
       <div class="carousel-nav" hidden>
-        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Back to the first video"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
-        <button class="carousel-btn" type="button" data-dir="1" aria-label="Jump to the last video"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Previous videos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+        <button class="carousel-btn" type="button" data-dir="1" aria-label="More videos"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
       </div>
       <div class="cards work-grid work-grid-tabs" tabindex="0" aria-label="Videos">
         <button class="work-item" type="button" data-cat="fashion" data-yt="jTiRRC-I1So" aria-label="Play: Prada, Holiday 2026 · Drawing Prada">
@@ -238,8 +238,8 @@
       </div>
       <div class="carousel" data-carousel>
       <div class="carousel-nav" hidden>
-        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Back to the first item"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
-        <button class="carousel-btn" type="button" data-dir="1" aria-label="Jump to the last item"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Previous items"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+        <button class="carousel-btn" type="button" data-dir="1" aria-label="More items"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
       </div>
       <div class="cards" tabindex="0" aria-label="Equipment and services">
         <article class="card">
@@ -363,7 +363,7 @@
         <div class="field"><label for="f-email">Email <span class="req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
         <div class="field"><label for="f-prod">Production / company</label><input id="f-prod" name="production" type="text"></div>
-        <div class="field"><label for="f-dates">Shoot dates</label><input id="f-dates" name="dates" type="text"></div>
+        <fieldset class="field date-range"><legend>Shoot dates</legend><div class="date-pair"><label class="sr-only" for="f-dates-from">Shoot start date</label><input id="f-dates-from" name="shoot_start" type="date"><span class="date-sep" aria-hidden="true">to</span><label class="sr-only" for="f-dates-to">Shoot end date</label><input id="f-dates-to" name="shoot_end" type="date"></div></fieldset>
         <div class="field"><label for="f-loc">Location</label><input id="f-loc" name="location" type="text"></div>
         <div class="field full"><label for="f-msg">What do you need? <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
         <div class="full form-foot">
@@ -397,6 +397,6 @@
 
 <div class="video-viewer" role="dialog" aria-modal="true" aria-label="Video" hidden><button class="lightbox-close" type="button" aria-label="Close video">×</button><video controls playsinline></video></div>
 
-<script src="/assets/js/main.js?v=20261117za" defer></script>
+<script src="/assets/js/main.js?v=20261117zb" defer></script>
 </body>
 </html>
