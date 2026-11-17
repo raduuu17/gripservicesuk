@@ -236,3 +236,19 @@ const SHOWREEL_URL = '';
   viewer.addEventListener('click', (e) => { if (e.target === viewer && viewer.querySelector('iframe')) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && viewer.querySelector('iframe')) close(); });
 })();
+
+/* Showreel tabs */
+(function () {
+  var tabs = document.querySelector('.work-tabs'); if (!tabs) return;
+  var items = [].slice.call(document.querySelectorAll('.work-grid-tabs .work-item'));
+  var btns = [].slice.call(tabs.querySelectorAll('[data-filter]'));
+  btns.forEach(function (b) {
+    var f = b.dataset.filter;
+    if (f !== 'all' && !items.some(function (i) { return i.dataset.cat === f; })) b.hidden = true;
+    b.addEventListener('click', function () {
+      btns.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      items.forEach(function (i) { i.hidden = !(f === 'all' || i.dataset.cat === f); });
+    });
+  });
+  if (btns.filter(function (b) { return !b.hidden; }).length < 3) tabs.hidden = true;
+})();

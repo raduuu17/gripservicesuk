@@ -486,3 +486,15 @@ main > .section-alt:last-child { border-bottom: 0; }
 .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 @media (max-width: 560px) { .header-actions .btn-line { display: none; } }
 .work-item:only-child { aspect-ratio: 21 / 9; } .work-item:only-child img { object-position: 50% 40%; }
+
+/* Showreel tabs: All / Commercial / Fashion / Music video */
+.work-tabs { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0 0 22px; border-bottom: 1px solid var(--line); }
+.work-tabs button { appearance: none; background: none; border: 0; padding: 0 0 14px; margin-bottom: -1px; border-bottom: 1px solid transparent; cursor: pointer; font: 600 12px/1.4 var(--head); letter-spacing: .26em; text-transform: uppercase; color: var(--muted); transition: color .25s ease, border-color .25s ease; }
+.work-tabs button:hover { color: var(--text); }
+.work-tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--silver); }
+.work-tabs button[hidden] { display: none; }
+.work-grid-tabs { grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); }
+.work-grid-tabs .work-item:only-child { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
+.work-grid-tabs .work-item[hidden] { display: none; }
+.work-cat-tag { font: 500 10px/1.4 var(--head); letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+.work-tabs[hidden] { display: none; }
