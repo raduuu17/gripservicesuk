@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261117s">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261117t">
 
 <script type="application/ld+json">
 {
@@ -129,7 +129,12 @@
         <button type="button" role="tab" aria-selected="false" data-filter="fashion">Fashion <span class="n"></span></button>
         <button type="button" role="tab" aria-selected="false" data-filter="music">Music video <span class="n"></span></button>
       </div>
-      <div class="work-grid work-grid-tabs">
+      <div class="carousel work-carousel" data-carousel>
+      <div class="carousel-nav" hidden>
+        <button class="carousel-btn" type="button" data-dir="-1" aria-label="Back to the first video"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+        <button class="carousel-btn" type="button" data-dir="1" aria-label="Jump to the last video"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
+      </div>
+      <div class="cards work-grid work-grid-tabs" tabindex="0" aria-label="Videos">
         <button class="work-item" type="button" data-cat="commercial" data-yt="Hbib-A6NpW8" aria-label="Play: Virgin Atlantic, Your airline’s either got it or it hasn’t">
           <span class="work-thumb"><img src="/assets/img/work/virgin-atlantic-2011.webp" alt="" loading="lazy" width="1280" height="720"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           <span class="work-meta"><span class="work-cat-tag">Commercial</span><span class="work-client">Virgin Atlantic</span><span class="work-title">Got it or it hasn’t · 2011</span><span class="work-watch" aria-hidden="true">Watch <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
@@ -150,6 +155,7 @@
           <span class="work-thumb"><img src="/assets/img/work/fatboy-slim-sunset.webp" alt="" loading="lazy" width="1280" height="720"><span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
           <span class="work-meta"><span class="work-cat-tag">Music video</span><span class="work-client">Fatboy Slim</span><span class="work-title">Sunset (Bird of Prey)</span><span class="work-watch" aria-hidden="true">Watch <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
         </button>
+      </div>
       </div>
     </div>
   </section>
@@ -346,6 +352,6 @@
 
 <div class="video-viewer" role="dialog" aria-modal="true" aria-label="Video" hidden><button class="lightbox-close" type="button" aria-label="Close video">×</button><video controls playsinline></video></div>
 
-<script src="/assets/js/main.js?v=20261117s" defer></script>
+<script src="/assets/js/main.js?v=20261117t" defer></script>
 </body>
 </html>

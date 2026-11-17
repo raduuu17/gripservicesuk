@@ -152,7 +152,7 @@ const SHOWREEL_URL = '';
       next.disabled = track.scrollLeft >= max - 4;
     };
     const step = () => {
-      const card = track.querySelector('.card');
+      const card = track.querySelector('.card, .work-item:not([hidden])');
       const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
       return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
     };
@@ -175,7 +175,7 @@ const SHOWREEL_URL = '';
   document.querySelectorAll('[data-carousel]').forEach((root) => {
     const track = root.querySelector('.cards');
     const sync = () => {
-      const media = track.querySelector('.card-media');
+      const media = track.querySelector('.card-media, .work-item:not([hidden]) .work-thumb');
       if (media) root.style.setProperty('--media-h', media.getBoundingClientRect().height + 'px');
       const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
       root.style.setProperty('--fade-end', atEnd ? '0' : '1');
@@ -250,6 +250,8 @@ const SHOWREEL_URL = '';
     b.addEventListener('click', function () {
       btns.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
       items.forEach(function (i) { i.hidden = !(f === 'all' || i.dataset.cat === f); });
+      var track = document.querySelector('.work-grid-tabs');
+      if (track) { track.scrollLeft = 0; track.dispatchEvent(new Event('scroll')); window.dispatchEvent(new Event('resize')); }
     });
   });
   if (btns.filter(function (b) { return !b.hidden; }).length < 3) tabs.hidden = true;
