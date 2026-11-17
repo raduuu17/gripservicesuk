@@ -169,3 +169,37 @@ const SHOWREEL_URL = '';
     update();
   });
 })();
+
+// Carousel v2: place side arrows at image height, fade only when more to the right
+(() => {
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const track = root.querySelector('.cards');
+    const sync = () => {
+      const media = track.querySelector('.card-media');
+      if (media) root.style.setProperty('--media-h', media.getBoundingClientRect().height + 'px');
+      const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
+      root.style.setProperty('--fade-end', atEnd ? '0' : '1');
+    };
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    window.addEventListener('load', sync);
+    sync();
+  });
+})();
+
+// Full-screen video viewer for video cards
+(() => {
+  const viewer = document.querySelector('.video-viewer');
+  if (!viewer) return;
+  const vid = viewer.querySelector('video');
+  const closeBtn = viewer.querySelector('.lightbox-close');
+  let last = null;
+  const close = () => { vid.pause(); vid.removeAttribute('src'); vid.load(); viewer.hidden = true; document.body.style.overflow = ''; if (last) last.focus(); };
+  document.querySelectorAll('[data-video]').forEach((b) => b.addEventListener('click', () => {
+    last = b; vid.src = b.dataset.video; viewer.hidden = false; document.body.style.overflow = 'hidden';
+    vid.play().catch(() => {}); closeBtn.focus();
+  }));
+  closeBtn.addEventListener('click', close);
+  viewer.addEventListener('click', (e) => { if (e.target === viewer) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !viewer.hidden) close(); });
+})();
