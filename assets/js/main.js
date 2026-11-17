@@ -285,3 +285,38 @@ const SHOWREEL_URL = '';
     if (to.value && from.value && to.value < from.value) to.value = from.value;
   });
 })();
+
+/* Enquiry form: send in the background (FormSubmit's AJAX endpoint) so visitors don't sit through
+   FormSubmit's slow page. Thank-you page shows as soon as the send is confirmed, or after 2.5s
+   while the request finishes in the background (keepalive). Without JS the normal POST still works. */
+(function () {
+  var form = document.querySelector('form[name="enquiry"]');
+  if (!form || !window.fetch) return;
+  var btn = form.querySelector('button[type="submit"]');
+  var label = btn ? btn.innerHTML : '';
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (form.dataset.sending) return;
+    form.dataset.sending = '1';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = v; });
+    var next = data._next || '/thank-you';
+    var done = false;
+    var go = function () { if (!done) { done = true; window.location.href = next; } };
+    var fail = function () {
+      if (done) return;
+      done = true; delete form.dataset.sending;
+      if (btn) { btn.disabled = false; btn.innerHTML = label; }
+      form.submit(); // fall back to the normal (slower) way so the enquiry is never lost
+    };
+    fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+      method: 'POST', keepalive: true,
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (j) { (j && String(j.success) === 'false') ? fail() : go(); })
+      .catch(fail);
+    setTimeout(go, 2500);
+  });
+})();
