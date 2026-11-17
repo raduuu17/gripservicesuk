@@ -244,7 +244,9 @@ const SHOWREEL_URL = '';
   var btns = [].slice.call(tabs.querySelectorAll('[data-filter]'));
   btns.forEach(function (b) {
     var f = b.dataset.filter;
-    if (f !== 'all' && !items.some(function (i) { return i.dataset.cat === f; })) b.hidden = true;
+    var n = items.filter(function (i) { return f === 'all' || i.dataset.cat === f; }).length;
+    var nEl = b.querySelector('.n'); if (nEl) nEl.textContent = n;
+    if (!n) b.hidden = true;
     b.addEventListener('click', function () {
       btns.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
       items.forEach(function (i) { i.hidden = !(f === 'all' || i.dataset.cat === f); });
