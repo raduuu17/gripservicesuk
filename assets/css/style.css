@@ -543,3 +543,8 @@ main > .section-alt:last-child { border-bottom: 0; }
 
 /* Carousels scroll sideways only — no small vertical scroll on hover/trackpad */
 .carousel .cards { overflow-y: hidden; }
+
+/* Fade covers the track's 2px overhang (was leaving a thin bright line at the right edge); arrows a touch higher */
+.carousel::after { right: -3px; }
+.carousel-btn { top: calc(43% - 28px); }
+@media (max-width: 760px) { .carousel-btn { top: calc(43% - 23px); } }
