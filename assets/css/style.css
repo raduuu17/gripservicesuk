@@ -540,3 +540,6 @@ main > .section-alt:last-child { border-bottom: 0; }
 /* Carousel arrows: centred on the whole card (image + text), not just the image */
 .carousel-btn { top: calc(50% - 28px); }
 @media (max-width: 760px) { .carousel-btn { top: calc(50% - 23px); } }
+
+/* Carousels scroll sideways only — no small vertical scroll on hover/trackpad */
+.carousel .cards { overflow-y: hidden; }
