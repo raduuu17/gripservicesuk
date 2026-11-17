@@ -536,3 +536,7 @@ main > .section-alt:last-child { border-bottom: 0; }
 .showreel .carousel::after { background: linear-gradient(90deg, rgba(20,20,23,0), var(--bg-3)); bottom: 14px; }
 @media (max-width: 1100px) { .carousel .cards.work-grid-tabs .work-item { flex-basis: calc((100% - 20px) / 2.2); } }
 @media (max-width: 760px) { .carousel .cards.work-grid-tabs .work-item { flex-basis: 84%; } }
+
+/* Carousel arrows: centred on the whole card (image + text), not just the image */
+.carousel-btn { top: calc(50% - 28px); }
+@media (max-width: 760px) { .carousel-btn { top: calc(50% - 23px); } }
