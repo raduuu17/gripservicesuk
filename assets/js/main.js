@@ -137,3 +137,35 @@ const SHOWREEL_URL = '';
   // Footer year
   document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 })();
+
+// Equipment carousel: arrows only appear when the cards don't all fit
+(() => {
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const track = root.querySelector('.cards');
+    const nav = root.querySelector('.carousel-nav');
+    const [prev, next] = nav.querySelectorAll('.carousel-btn');
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const overflow = max > 4;
+      nav.hidden = !overflow;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft >= max - 4;
+    };
+    const step = () => {
+      const card = track.querySelector('.card');
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 20;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    };
+    nav.querySelectorAll('.carousel-btn').forEach((b) => b.addEventListener('click', () => {
+      track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: 'smooth' });
+    }));
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); track.scrollBy({ left: step(), behavior: 'smooth' }); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); track.scrollBy({ left: -step(), behavior: 'smooth' }); }
+    });
+    update();
+  });
+})();
