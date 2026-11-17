@@ -421,3 +421,32 @@ main > .section-alt:last-child { border-bottom: 0; }
 @media (max-width: 560px) { .quick-call ul { flex-direction: column; } .quick-call li { justify-content: space-between; min-height: 52px; } }
 .quick-call ul { flex-direction: column; gap: 8px; max-width: 380px; }
 .quick-call li { justify-content: space-between; min-height: 50px; }
+
+/* ---------- Contact: fit on one screen ---------- */
+#contact { padding-top: clamp(64px, 7vw, 104px); padding-bottom: clamp(64px, 7vw, 104px); }
+#contact .contact { align-items: center; }
+#contact h2 { font-size: clamp(32px, 3.3vw, 50px); }
+#contact .contact-info > .muted { margin-top: 14px; font-size: 16px; }
+#contact .enquiry-steps { margin-top: 28px; }
+#contact .enquiry-steps li { padding: 14px 0; gap: 16px; }
+#contact .enquiry-steps h3 { font-size: 15px; }
+#contact .enquiry-steps p { margin-top: 3px; font-size: 14px; }
+#contact .quick-call { margin-top: 26px; }
+#contact .quick-call ul { max-width: none; flex-direction: row; flex-wrap: wrap; gap: 8px; }
+#contact .quick-call li { min-height: 44px; padding: 8px 12px; flex: 1 1 150px; }
+#contact .quick-call a { font-size: 14px; }
+#contact .form { gap: 16px 18px; padding: clamp(22px, 2.4vw, 32px); }
+#contact .field input, #contact .field textarea { padding: 11px 14px; }
+@media (min-width: 1101px) { #contact .form { position: static; } #contact .form .field textarea { min-height: 120px; } }
+#contact .field textarea { min-height: 110px; }
+@media (max-width: 560px) { #contact .quick-call ul { flex-direction: column; } }
+
+/* ---------- About: centred heading + text ---------- */
+#about .section-head.split { flex-direction: column; align-items: center; text-align: center; gap: 0; max-width: 820px; margin-left: auto; margin-right: auto; }
+#about .section-head .eyebrow { justify-content: center; }
+#about .section-head .eyebrow::after { content: ""; width: 28px; height: 1px; background: var(--silver); opacity: .7; }
+#about .about-text { max-width: 760px; margin-top: 22px; padding: 0; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.75; color: #C2C2C8; text-wrap: pretty; }
+#contact .quick-call ul { flex-wrap: nowrap; }
+#contact .quick-call li { flex: 1 1 0; min-width: 0; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; padding: 10px 12px; }
+#contact .quick-call a { font-size: 13.5px; }
+@media (max-width: 560px) { #contact .quick-call ul { flex-direction: column; } #contact .quick-call li { flex-direction: row; justify-content: space-between; align-items: center; } }
