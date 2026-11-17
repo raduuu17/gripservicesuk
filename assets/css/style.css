@@ -450,3 +450,9 @@ main > .section-alt:last-child { border-bottom: 0; }
 #contact .quick-call li { flex: 1 1 0; min-width: 0; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; padding: 10px 12px; }
 #contact .quick-call a { font-size: 13.5px; }
 @media (max-width: 560px) { #contact .quick-call ul { flex-direction: column; } #contact .quick-call li { flex-direction: row; justify-content: space-between; align-items: center; } }
+
+/* Footer: Instagram */
+.social { display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px 10px 10px; border: 1px solid var(--line-2); color: var(--text); text-decoration: none; font: 500 13px var(--head); letter-spacing: .08em; transition: border-color .25s ease, background .25s ease, color .25s ease; }
+.social svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.social svg .dot { fill: currentColor; stroke: none; }
+.social:hover { background: var(--text); border-color: var(--text); color: #0B0B0C; }
