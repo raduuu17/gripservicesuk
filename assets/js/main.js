@@ -203,3 +203,36 @@ const SHOWREEL_URL = '';
   viewer.addEventListener('click', (e) => { if (e.target === viewer) close(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !viewer.hidden) close(); });
 })();
+
+// YouTube work videos: open in the full-screen viewer (privacy-enhanced embed)
+(() => {
+  const viewer = document.querySelector('.video-viewer');
+  if (!viewer) return;
+  const vid = viewer.querySelector('video');
+  const closeBtn = viewer.querySelector('.lightbox-close');
+  let last = null;
+  const close = () => {
+    const f = viewer.querySelector('iframe');
+    if (f) f.remove();
+    vid.hidden = false;
+    viewer.hidden = true;
+    document.body.style.overflow = '';
+    if (last) last.focus();
+  };
+  document.querySelectorAll('[data-yt]').forEach((b) => b.addEventListener('click', () => {
+    last = b;
+    vid.pause(); vid.hidden = true;
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.dataset.yt) + '?autoplay=1&rel=0';
+    f.title = b.getAttribute('aria-label') || 'Video';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    viewer.appendChild(f);
+    viewer.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }));
+  closeBtn.addEventListener('click', () => { if (viewer.querySelector('iframe')) close(); });
+  viewer.addEventListener('click', (e) => { if (e.target === viewer && viewer.querySelector('iframe')) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && viewer.querySelector('iframe')) close(); });
+})();

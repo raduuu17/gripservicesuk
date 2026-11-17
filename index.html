@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261117k">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261117o">
 
 <script type="application/ld+json">
 {
@@ -111,17 +111,23 @@
   <!-- SHOWREEL + WORK -->
   <section class="section" id="showreel">
     <div class="wrap">
-      <div class="section-head">
-        <p class="eyebrow">Showreel</p>
-        <h2>On set</h2>
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow">Showreel</p>
+          <h2>Our work</h2>
+        </div>
+        <p class="muted">A selection of commercials, films and shoots we’ve worked on.</p>
       </div>
 
-      <div class="reel" data-video="">
-        <img src="/assets/img/crane-sky.webp" alt="Camera crane arm against the sky at sunrise" loading="lazy" width="1600" height="1200">
-        <button class="reel-play" type="button" aria-label="Play showreel">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <!-- VIDEO WORK: one <button class="work-item"> per YouTube video.
+           To add a video: copy a block, set data-yt to the YouTube ID (the part after youtu.be/),
+           put a thumbnail in /assets/img/work/ and update the client + title text. -->
+      <div class="work-grid">
+        <button class="work-item" type="button" data-yt="bSE3TYKSnmc" aria-label="Play: COS Spring Summer 2025 with Adrien Brody">
+          <img src="/assets/img/work/cos-ss25.webp" alt="" loading="lazy" width="1280" height="720">
+          <span class="work-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="work-meta"><span class="work-client">COS</span><span class="work-title">Spring Summer 2025 · with Adrien Brody</span></span>
         </button>
-        <p class="reel-label">Showreel <span class="reel-soon">— coming soon</span></p>
       </div>
 
       <div class="gallery">
@@ -131,6 +137,7 @@
         <figure><a href="/assets/img/sunset-commercial.webp" data-lightbox><img src="/assets/img/sunset-commercial-sm.webp" alt="Remote head over dolly track at sunset on a car commercial" loading="lazy" width="900" height="675"></a><figcaption>Car commercial · sunset</figcaption></figure>
         <figure><a href="/assets/img/crane-forest.webp" data-lightbox><img src="/assets/img/crane-forest-sm.webp" alt="Grip Services UK crane on location in a forest" loading="lazy" width="842" height="900"></a><figcaption>On location · forest</figcaption></figure>
       </div>
+      <div class="gallery-more"><a class="btn btn-line" href="/gallery">View full gallery <svg viewBox="0 0 16 10" aria-hidden="true"><path d="M0 5h14M10 1l4 4-4 4"/></svg></a></div>
     </div>
   </section>
 
@@ -288,7 +295,7 @@
   <div class="wrap footer-inner">
     <a class="brand" href="#home" aria-label="Grip Services UK — back to top"><img src="/assets/img/logo-320.webp" width="84" height="80" alt="Grip Services UK logo"></a>
     <nav aria-label="Footer">
-      <a href="#showreel">Showreel</a><a href="#equipment">Equipment</a><a href="#about">About</a><a href="#contact">Contact</a><a href="/privacy">Privacy</a>
+      <a href="#showreel">Showreel</a><a href="/gallery">Gallery</a><a href="#equipment">Equipment</a><a href="#about">About</a><a href="#contact">Contact</a><a href="/privacy">Privacy</a>
     </nav>
     <a class="social" href="https://www.instagram.com/gripservices_uk/" target="_blank" rel="noopener" aria-label="Grip Services UK on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" class="dot"/></svg><span>@gripservices_uk</span></a>
   </div>
@@ -305,6 +312,6 @@
 
 <div class="video-viewer" role="dialog" aria-modal="true" aria-label="Video" hidden><button class="lightbox-close" type="button" aria-label="Close video">×</button><video controls playsinline></video></div>
 
-<script src="/assets/js/main.js?v=20261117k" defer></script>
+<script src="/assets/js/main.js?v=20261117o" defer></script>
 </body>
 </html>
