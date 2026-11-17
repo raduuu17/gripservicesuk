@@ -157,7 +157,24 @@ const SHOWREEL_URL = '';
       return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
     };
     nav.querySelectorAll('.carousel-btn').forEach((b) => b.addEventListener('click', () => {
-      track.scrollBy({ left: Number(b.dataset.dir) * step() * 2, behavior: 'smooth' }); // move 2 cards
+      // move 2 cards with a slower, eased slide (the browser's own smooth scroll is too quick)
+      const max = track.scrollWidth - track.clientWidth;
+      const from = track.scrollLeft;
+      const to = Math.max(0, Math.min(max, from + Number(b.dataset.dir) * step() * 2));
+      if (to === from) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { track.scrollLeft = to; return; }
+      cancelAnimationFrame(track._anim);
+      const dur = 900, t0 = performance.now();
+      const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      track.style.scrollSnapType = 'none';
+      track.style.scrollBehavior = 'auto';
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        track.scrollLeft = from + (to - from) * ease(p);
+        if (p < 1) track._anim = requestAnimationFrame(tick);
+        else { track.style.scrollSnapType = ''; track.style.scrollBehavior = ''; }
+      };
+      track._anim = requestAnimationFrame(tick);
     }));
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
