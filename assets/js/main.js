@@ -299,9 +299,8 @@ const SHOWREEL_URL = '';
     if (form.dataset.sending) return;
     form.dataset.sending = '1';
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-    var data = {};
-    new FormData(form).forEach(function (v, k) { data[k] = v; });
-    var next = data._next || '/thank-you';
+    var body = new FormData(form);
+    var next = body.get('_next') || '/thank-you';
     var done = false;
     var go = function () { if (!done) { done = true; window.location.href = next; } };
     var fail = function () {
@@ -311,9 +310,11 @@ const SHOWREEL_URL = '';
       form.submit(); // fall back to the normal (slower) way so the enquiry is never lost
     };
     fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+      // plain form data + Accept only = a "simple" request: no CORS preflight (FormSubmit's preflight takes ~14s,
+      // and Chrome refuses keepalive requests that need one)
       method: 'POST', keepalive: true,
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(data)
+      headers: { 'Accept': 'application/json' },
+      body: body
     }).then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
       .then(function (j) { (j && String(j.success) === 'false') ? fail() : go(); })
       .catch(fail);
