@@ -157,7 +157,7 @@ const SHOWREEL_URL = '';
       return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
     };
     nav.querySelectorAll('.carousel-btn').forEach((b) => b.addEventListener('click', () => {
-      track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: 'smooth' });
+      track.scrollTo({ left: Number(b.dataset.dir) > 0 ? track.scrollWidth : 0, behavior: 'smooth' });
     }));
     track.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
