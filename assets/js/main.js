@@ -240,7 +240,11 @@ const SHOWREEL_URL = '';
     last = b;
     vid.pause(); vid.hidden = true;
     const f = document.createElement('iframe');
-    f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(b.dataset.yt) + '?autoplay=1&rel=0';
+    // data-yt="ID" plays from YouTube; data-yt="vimeo:ID" plays from Vimeo
+    const id = b.dataset.yt;
+    f.src = id.indexOf('vimeo:') === 0
+      ? 'https://player.vimeo.com/video/' + encodeURIComponent(id.slice(6)) + '?autoplay=1&dnt=1'
+      : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '?autoplay=1&rel=0';
     f.title = b.getAttribute('aria-label') || 'Video';
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
